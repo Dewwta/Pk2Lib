@@ -1,0 +1,12 @@
+[package]
+name = "Pk2Lib"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "Pk2Lib"
+path = "src/lib.rs"
+
+[dependencies]
+ddsfile = "0.6.0"
+texture2ddecoder = "0.1"
