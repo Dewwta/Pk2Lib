@@ -76,7 +76,7 @@ pub fn decode_ddj(bytes: &[u8]) -> Result<DecodedImage, DdjError> {
 
     let payload = &dds[DDS_FULL_HEADER..];
 
-    // ---- FourCC (block-compressed) path ----
+    // FourCC (block-compressed) path
     if flags & DDPF_FOURCC != 0 {
         let mut out_argb = vec![0u32; (width * height) as usize];
         match fourcc {
@@ -94,7 +94,7 @@ pub fn decode_ddj(bytes: &[u8]) -> Result<DecodedImage, DdjError> {
         return Ok(argb_u32_to_rgba(&out_argb, width, height));
     }
 
-    // ---- Uncompressed RGB path: dispatch on bitcount + masks ----
+    // Uncompressed RGB path: dispatch on bitcount + masks
     if flags & DDPF_RGB != 0 {
         let has_alpha = flags & DDPF_ALPHAPIXELS != 0;
         let stride = row_stride(payload.len(), height, width as usize * (bitcount as usize / 8));
